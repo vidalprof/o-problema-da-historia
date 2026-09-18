@@ -1,0 +1,168 @@
+{
+ "ano": 2,
+ "componente": "Língua Portuguesa",
+ "rede": "Currículo da Educação Básica do Sistema Municipal de Ensino de Blumenau",
+ "documento": "_curriculo/blumenau.txt",
+ "conceitos": [],
+ "fora_do_curriculo": [],
+ "degrau": 9,
+ "evidencia": [
+  "Jogado do começo ao fim no navegador, item por item, antes de publicar.",
+  "Um jogador automático resolve cada item pela resposta declarada e confere se a folha fecha.",
+  "Leiaute medido em 6 tamanhos de tela, nas 35 folhas.",
+  "Toda tela é narrada com voz real, e cada opção de resposta tem o seu alto-falante.",
+  "As 35 folhas nasceram do crivo de 40 folhas de papel reais, em `_sequencias/POTE-NARRA2.md`, lidas uma a uma.",
+  "As 13 figuras foram recortadas das próprias folhas colhidas (d19, d31, d32 e d36); nenhuma é gerada por IA e nenhuma é de personagem registrado.",
+  "A habilidade citada no dossiê é conferida, palavra por palavra, contra o currículo da rede."
+ ],
+ "observacoes": [
+  "⚠️ ESTA COLHEITA VEIO TORTA, e está registrado por quê: NOVE das quarenta folhas são da DISCIPLINA História (a busca pegou os dois sentidos da palavra — uma delas é de 6º ano, sobre a Pré-História) e DEZOITO são história em quadrinhos com PERSONAGEM REGISTRADO (Turma da Mônica, Chico Bento, Menino Maluquinho, Snoopy), com o aviso de direitos impresso na própria folha. O GESTO dessas dezoito entra; o texto e o desenho, não. É a única colheita em que a maioria foi barrada por direito autoral, e não por qualidade.",
+  "OS TEXTOS SÃO QUATRO FÁBULAS DE ESOPO E UMA LENDA DO FOLCLORE, que a própria colheita trouxe (d27, d31, d32, d36 e d05) e que são de DOMÍNIO PÚBLICO: O Leão e o Ratinho, A Pomba e a Formiga, A Lebre e a Tartaruga, A Assembleia dos Ratos e A Lenda da Cuca. Estão reescritas em vocabulário de sete anos — a fábula é livre, mas a tradução impressa em cada folha é de alguém.",
+  "A PERGUNTA QUE NOMEIA O CONFLITO VEIO DA FOLHA DE PAPEL, em palavras de criança: 'QUAL ERA O PROBLEMA QUE OS RATOS QUERIAM RESOLVER?' (d36). É assim que o caderno pergunta até a folha 35 — nunca 'conflito gerador'.",
+  "O CONCEITO VEM POR ÚLTIMO: os nomes PERSONAGEM, LUGAR, PROBLEMA e SOLUÇÃO só aparecem no cartaz da folha 35, e mesmo lá ao lado das palavras de criança.",
+  "O TEMPO ENTRA COMO BLOCO DECLARADO (folhas 22 a 24). O currículo nomeia 'tempo' entre os conceitos e uma única folha da colheita o trabalha (d23); o vocabulário é o dela: aconteceu · acontece · vai acontecer.",
+  "O `conceitos` está VAZIO de propósito, e isso NÃO é 'passou': em Língua Portuguesa o documento da rede vem em faixas, sem cabeçalho por ano.",
+  "A CITAÇÃO É A FRASE INTEIRA DA HABILIDADE, lida na tabela do PDF da rede (2º ANO · Campo artístico-literário · Leitura/escuta), onde ela vem quebrada em linhas e entrelaçada com a coluna dos gêneros."
+ ],
+ "objetivos": [
+  {
+   "objetivo": "Reconhecer quem são os personagens da história",
+   "folhas": [
+    1,
+    2,
+    3
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Reconhecer o lugar em que a história acontece",
+   "folhas": [
+    4,
+    5,
+    6
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Pôr os acontecimentos na ordem em que aconteceram",
+   "folhas": [
+    7,
+    8,
+    9
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Reconhecer o problema que a história precisa resolver",
+   "folhas": [
+    10,
+    11,
+    12
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Reconhecer como o problema se resolve",
+   "folhas": [
+    13,
+    14,
+    15
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Reconhecer as palavras que dizem como o personagem é",
+   "folhas": [
+    16,
+    17,
+    18
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Reconhecer o que o personagem sente em cada momento",
+   "folhas": [
+    19,
+    20,
+    21
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Reconhecer o tempo da narrativa",
+   "folhas": [
+    22,
+    23,
+    24
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Achar as palavras da narrativa nos jogos de letras",
+   "folhas": [
+    25,
+    26,
+    27
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Achar o problema e a solução dentro do texto",
+   "folhas": [
+    28,
+    29
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Dizer a lição que a fábula deixa",
+   "folhas": [
+    30
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Nomear, recontar e dar título à história",
+   "folhas": [
+    31,
+    32,
+    33
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Montar a própria história e nomear os seus elementos",
+   "folhas": [
+    34,
+    35
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  }
+ ]
+}
