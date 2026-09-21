@@ -26,7 +26,7 @@
  ],
  "objetivos": [
   {
-   "objetivo": "Reconhecer quem são os personagens da história",
+   "objetivo": "Ouvir as três fábulas inteiras, do começo ao fim",
    "folhas": [
     1,
     2,
@@ -34,10 +34,11 @@
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
-   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\"",
+   "_por_que_a_mesma_habilidade": "Não há como reconhecer o conflito gerador de uma narrativa sem conhecer a narrativa. Estas três folhas são a PRIMEIRA metade da mesma habilidade: a criança ouve a fábula inteira e só depois trabalha com ela. Foram acrescentadas em 21/set/2026 a pedido do professor Marcos, que viu que o caderno perguntava “quem está na história?” a quem nunca tinha ouvido a história."
   },
   {
-   "objetivo": "Reconhecer o lugar em que a história acontece",
+   "objetivo": "Reconhecer quem são os personagens da história",
    "folhas": [
     4,
     5,
@@ -48,7 +49,7 @@
    "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
   },
   {
-   "objetivo": "Pôr os acontecimentos na ordem em que aconteceram",
+   "objetivo": "Reconhecer o lugar em que a história acontece",
    "folhas": [
     7,
     8,
@@ -59,7 +60,7 @@
    "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
   },
   {
-   "objetivo": "Reconhecer o problema que a história precisa resolver",
+   "objetivo": "Pôr os acontecimentos na ordem em que aconteceram",
    "folhas": [
     10,
     11,
@@ -70,12 +71,23 @@
    "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
   },
   {
-   "objetivo": "Reconhecer como o problema se resolve, e separá-lo do problema",
+   "objetivo": "Reconhecer o problema que a história precisa resolver",
    "folhas": [
     13,
     14,
-    15,
-    18
+    15
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Reconhecer como o problema se resolve, e separá-lo do problema",
+   "folhas": [
+    16,
+    17,
+    18,
+    21
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
@@ -83,16 +95,6 @@
   },
   {
    "objetivo": "Reconhecer as palavras que dizem como o personagem é",
-   "folhas": [
-    16,
-    17
-   ],
-   "pratica": "Leitura/escuta (compartilhada e autônoma)",
-   "objeto": "Formação do leitor literário",
-   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
-  },
-  {
-   "objetivo": "Reconhecer o que o personagem sente em cada momento",
    "folhas": [
     19,
     20
@@ -102,18 +104,17 @@
    "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
   },
   {
-   "objetivo": "Reconhecer o tempo da narrativa",
+   "objetivo": "Reconhecer o que o personagem sente em cada momento",
    "folhas": [
     22,
-    23,
-    24
+    23
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
    "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
   },
   {
-   "objetivo": "Achar as palavras da narrativa nos jogos de letras",
+   "objetivo": "Reconhecer o tempo da narrativa",
    "folhas": [
     25,
     26,
@@ -124,10 +125,21 @@
    "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
   },
   {
-   "objetivo": "Achar o problema e a solução dentro do texto",
+   "objetivo": "Achar as palavras da narrativa nos jogos de letras",
    "folhas": [
     28,
-    29
+    29,
+    30
+   ],
+   "pratica": "Leitura/escuta (compartilhada e autônoma)",
+   "objeto": "Formação do leitor literário",
+   "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
+  },
+  {
+   "objetivo": "Achar o problema e a solução dentro do texto",
+   "folhas": [
+    31,
+    32
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
@@ -136,8 +148,8 @@
   {
    "objetivo": "Dizer a lição que a fábula deixa",
    "folhas": [
-    21,
-    30
+    24,
+    33
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
@@ -146,9 +158,9 @@
   {
    "objetivo": "Nomear, recontar e dar título à história",
    "folhas": [
-    31,
-    32,
-    33
+    34,
+    35,
+    36
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
@@ -157,8 +169,8 @@
   {
    "objetivo": "Montar a própria história e nomear os seus elementos",
    "folhas": [
-    34,
-    35
+    37,
+    38
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",

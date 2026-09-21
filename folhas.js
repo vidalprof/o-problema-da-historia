@@ -26,10 +26,10 @@ var livro = document.getElementById("livro"), PAGEL = [], TIRAS = [];
    apontada por engano FECHAVA SOZINHA, sem ninguém tocar nela. São as únicas
    cujos ids não nascem de `n<pi>_`, e sim dentro do `montaLigar`
    (`l<pi>g<i>_<chave>`). Conferir com `node _qa/conta_folha.js <pasta>`. */
-var LIGAR = [3, 20, 21];
+var LIGAR = [6, 23, 24];
 /* a cor da faixa por BLOCO da escada, não por folha: a criança vê que o assunto
    mudou. Uma entrada por folha, de c1 a c5. */
-var CORES = ["c1", "c1", "c1", "c2", "c2", "c2", "c3", "c3", "c3", "c3", "c3", "c3", "c4", "c4", "c4", "c4", "c4", "c4", "c5", "c5", "c5", "c5", "c5", "c5", "c1", "c1", "c1", "c1", "c1", "c1", "c2", "c2", "c2", "c2", "c2"];
+var CORES = ["c5", "c5", "c5", "c1", "c1", "c1", "c2", "c2", "c2", "c3", "c3", "c3", "c3", "c3", "c3", "c4", "c4", "c4", "c4", "c4", "c4", "c5", "c5", "c5", "c5", "c5", "c5", "c1", "c1", "c1", "c1", "c1", "c1", "c2", "c2", "c2", "c2", "c2"];
 
 
 function faixa(d, i, titulo){ d.appendChild(el("div", "faixa", '<div class="num">' + i + '</div><h2>' + titulo + '</h2>')); }
@@ -218,7 +218,7 @@ function sobre(ev, alvo){
 function monta(){
   livro.innerHTML = ""; PAGEL = []; RESP = {}; TIRAS = [];
   /* ⚠️ UMA ENTRADA POR FOLHA, na ordem, começando pela capa `f0`. */
-  var caps = [f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35], i;
+  var caps = [f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36, f37, f38], i;
   for(i = 0; i < caps.length; i++){
     var d = el("div", "pagina" + (i > 0 ? " " + CORES[i - 1] : "")); d.setAttribute("data-pag", i);
     caps[i](d, i);
@@ -249,11 +249,95 @@ function f0(d){
   });
   c.innerHTML =
     '<div class="ceu"></div>' + '<h1 class="titu">' + letras + '</h1>' +
-    '<div class="sub">Língua Portuguesa &middot; 2º ano &middot; 35 folhas sobre fábulas e histórias</div>' +
+    '<div class="sub">Língua Portuguesa &middot; 2º ano &middot; 38 folhas sobre fábulas e histórias</div>' +
     '<div class="cena">' + '<div class="it" style="animation-delay:0.00s">' + '<img class="capfig" draggable="false" onload="naoAmplia(this)" src="img/hi_castelo.png?v=' + V + '" alt="">' + '' + '</div>' + '<div class="it" style="animation-delay:0.35s">' + '<img class="capfig" draggable="false" onload="naoAmplia(this)" src="img/hi_menino.png?v=' + V + '" alt="">' + '' + '</div>' + '<div class="it" style="animation-delay:0.70s">' + '<img class="capfig" draggable="false" onload="naoAmplia(this)" src="img/hi_vaca.png?v=' + V + '" alt="">' + '' + '</div>' + '<div class="it" style="animation-delay:1.05s">' + '<img class="capfig" draggable="false" onload="naoAmplia(this)" src="img/hi_galinha.png?v=' + V + '" alt="">' + '' + '</div>' + '</div><div class="chao2"></div>' +
     '<div class="chamada">Escreva o seu nome ali embaixo e toque em <b>Começar</b>.</div>';
   d.appendChild(c);
 }
+/* ---------- 1, 2 e 3 — AS TRÊS FÁBULAS, CONTADAS ANTES DE QUALQUER PERGUNTA
+   ⭐ Pedido do Marcos (21/set/2026): *"acho que ficou difícil nessa atividade
+      sem as histórias para eles ouvirem primeiro"*. Ele tinha razão e o caderno
+      estava errado: a folha 1 perguntava *"quem está na história?"* a uma
+      criança de sete anos que NUNCA tinha ouvido a história. As três fábulas já
+      moravam aqui inteiras (o `TXT`, seis linhas cada), mas só apareciam nas
+      folhas de marcar no texto — depois de dez folhas perguntando sobre elas.
+   ⚠️ ISTO NÃO É PROVA: a pergunta do fim existe para a criança perceber que
+      escutou, não para medir leitura. Ela tem três opções, todas com o
+      alto-falante irmão, e a resposta está literalmente na fábula que acabou de
+      tocar. Quem ouviu, acerta.
+   ⚠️ O SOM PRECISA DE UM TOQUE: navegador nenhum deixa o áudio começar sozinho
+      antes de um gesto. Por isso a história não toca na abertura — o botão
+      grande é o "start", e ele pisca até ser tocado uma vez. */
+function fHistoria(d, pi, tk, qual, figs, perg){
+  var T = TXT[tk];
+  faixa(d, pi, NOMES[pi - 1]);
+  /* ⚠️ CADA FOLHA NOMEIA A SUA FÁBULA (portão 0b14). As três diziam a mesma
+     frase, e para quem ainda não lê a narração É a folha: três iguais são,
+     para a criança, a mesma folha três vezes. */
+  enunciado(d, pi, "Toque em <b>Ouvir a história</b> e escute a fábula <b>" + qual +
+                   "</b> até o fim. Depois responda a pergunta.",
+            "p" + pi + "enun");
+
+  var cena = el("div", "histcena");
+  figs.forEach(function(f){
+    cena.appendChild(el("span", "histfig",
+      '<img class="fig" draggable="false" onload="naoAmplia(this)" src="img/' + f +
+      '?v=' + (typeof VIMG !== "undefined" ? VIMG : 2) + '" alt="">'));
+  });
+  d.appendChild(cena);
+
+  var ouvi = false;
+  var grande = el("button", "bt verde ouvirhist", "Ouvir a história");
+  grande.setAttribute("data-qa", "hist-" + pi);
+  grande.onclick = function(){
+    ouvi = true; grande.className = "bt verde ouvirhist ja";
+    sPasso(); falar("hist" + pi);
+  };
+  d.appendChild(grande);
+
+  /* o texto da fábula: cada LINHA se ouve sozinha, para a criança voltar
+     naquele pedaço sem escutar tudo de novo. */
+  var cx = el("div", "texto hist");
+  cx.appendChild(el("h3", "ttit", T.titulo));
+  T.linhas.forEach(function(lin, i){
+    var l = el("div", "histlin");
+    l.appendChild(el("p", "tlin", lin.join(" ") + "."));
+    l.appendChild(botaoSom("Ouvir esta linha", function(){ falar("lin" + pi + "_" + i); }));
+    cx.appendChild(l);
+  });
+  d.appendChild(cx);
+
+  var id = "n" + pi + "_0", box = item(0);
+  box.appendChild(el("div", "enun", perg.p));
+  opcoes(box, pi, id, perg.ops, perg.r, "pal",
+         "certo" + pi + "_q", "dica" + pi + "_q");
+  fechaItem(d, box, id);
+}
+function f1(d, pi){
+  fHistoria(d, pi, "tx1", "do leão e do ratinho", ["hi_leao.png", "hi_ratinho.png"],
+    {p: "Quem salvou o leão da rede dos caçadores?",
+     r: "ratinho",
+     ops: [{v: "ratinho", rot: "O ratinho", fala: "op1_ratinho"},
+           {v: "pomba",   rot: "A pomba",   fala: "op1_pomba"},
+           {v: "cacador", rot: "O caçador", fala: "op1_cacador"}]});
+}
+function f2(d, pi){
+  fHistoria(d, pi, "tx2", "da pomba e da formiga", ["hi_pomba.png", "hi_formiga.png"],
+    {p: "O que a pomba jogou na água para salvar a formiga?",
+     r: "folha",
+     ops: [{v: "folha", rot: "Uma folha", fala: "op2_folha"},
+           {v: "pedra", rot: "Uma pedra", fala: "op2_pedra"},
+           {v: "corda", rot: "Uma corda", fala: "op2_corda"}]});
+}
+function f3(d, pi){
+  fHistoria(d, pi, "tx3", "da lebre e da tartaruga", ["hi_corrida.png", "hi_trofeu.png"],
+    {p: "Por que a lebre perdeu a corrida?",
+     r: "dormiu",
+     ops: [{v: "dormiu",   rot: "Porque parou para dormir", fala: "op3_dormiu"},
+           {v: "machucou", rot: "Porque se machucou",       fala: "op3_machucou"},
+           {v: "devagar",  rot: "Porque andava devagar",    fala: "op3_devagar"}]});
+}
+
 function gavetas(d, pi, gk, pede){
   faixa(d, pi, NOMES[pi - 1]);
   var G = GAV[gk];
@@ -946,31 +1030,33 @@ var PESO_PRIMEIRA = 1.0, PESO_COM_AJUDA = 0.6;
          ok:  "faz o que o objetivo pede, em palavras do professor",
          nao: "o que ainda não faz — sem a palavra 'errou'"}  */
 var OBJETIVOS = [
-  {n: "Reconhecer quem são os personagens da história", f: [1, 2, 3],
+  {n: "Ouvir as três fábulas inteiras, do começo ao fim", f: [1, 2, 3],
+   ok: "ouve cada fábula inteira e diz o que aconteceu nela"},
+  {n: "Reconhecer quem são os personagens da história", f: [4, 5, 6],
    ok: "reconhece os personagens da narrativa e os separa de quem não está nela"},
-  {n: "Reconhecer o lugar em que a história acontece", f: [4, 5, 6],
+  {n: "Reconhecer o lugar em que a história acontece", f: [7, 8, 9],
    ok: "diz e escreve o ambiente em que a narrativa se passa"},
-  {n: "Pôr os acontecimentos na ordem em que aconteceram", f: [7, 8, 9],
+  {n: "Pôr os acontecimentos na ordem em que aconteceram", f: [10, 11, 12],
    ok: "põe as cenas da história na ordem e diz o que veio antes"},
-  {n: "Reconhecer o problema que a história precisa resolver", f: [10, 11, 12],
+  {n: "Reconhecer o problema que a história precisa resolver", f: [13, 14, 15],
    ok: "reconhece o conflito que move a narrativa"},
-  {n: "Reconhecer como o problema se resolve, e separá-lo do problema", f: [13, 14, 15, 18],
+  {n: "Reconhecer como o problema se resolve, e separá-lo do problema", f: [16, 17, 18, 21],
    ok: "reconhece a resolução e imagina o que aconteceria sem ela"},
-  {n: "Reconhecer as palavras que dizem como o personagem é", f: [16, 17],
+  {n: "Reconhecer as palavras que dizem como o personagem é", f: [19, 20],
    ok: "usa as palavras do texto que caracterizam cada personagem"},
-  {n: "Reconhecer o que o personagem sente em cada momento", f: [19, 20],
+  {n: "Reconhecer o que o personagem sente em cada momento", f: [22, 23],
    ok: "relaciona o momento da história ao sentimento do personagem"},
-  {n: "Reconhecer o tempo da narrativa", f: [22, 23, 24],
+  {n: "Reconhecer o tempo da narrativa", f: [25, 26, 27],
    ok: "separa o que já aconteceu, o que acontece e o que vai acontecer"},
-  {n: "Achar as palavras da narrativa nos jogos de letras", f: [25, 26, 27],
+  {n: "Achar as palavras da narrativa nos jogos de letras", f: [28, 29, 30],
    ok: "acha os personagens e as coisas da história na grade e na cruzadinha"},
-  {n: "Achar o problema e a solução dentro do texto", f: [28, 29],
+  {n: "Achar o problema e a solução dentro do texto", f: [31, 32],
    ok: "acha no texto escrito as palavras que dizem o problema e a solução"},
-  {n: "Dizer a lição que a fábula deixa", f: [21, 30],
+  {n: "Dizer a lição que a fábula deixa", f: [24, 33],
    ok: "diz em uma frase a lição de cada fábula"},
-  {n: "Nomear, recontar e dar título à história", f: [31, 32, 33],
+  {n: "Nomear, recontar e dar título à história", f: [34, 35, 36],
    ok: "escreve os nomes, dá um título e escolhe o reconto correto"},
-  {n: "Montar a própria história e nomear os seus elementos", f: [34, 35],
+  {n: "Montar a própria história e nomear os seus elementos", f: [37, 38],
    ok: "monta uma história sua e usa os nomes personagem, lugar, problema e solução"}
 ];
 
@@ -1312,7 +1398,7 @@ function marqueConfira(box, id, pi, pecas, fCerto, fDica){
   box.appendChild(cf);
 }
 
-/* PEÇA — ACHAR DENTRO DO TEXTO (_ponto2, f25/f26) */
+/* PEÇA — ACHAR DENTRO DO TEXTO (_ponto2, f28/f29) */
 function noTexto(d, pi, T, fCerto, fDica){
   var id = "n" + pi + "_0", box = item(0);
   registra(id, pi, T.ok.map(function(w){ return "w" + chaveQuadro(w); }).join(" "));
@@ -1401,7 +1487,7 @@ function pintavel(el2, id, pi, cor, fCerto, fDica, box){
   };
 }
 
-/* PEÇA — O TECLADO NUMA FILA DE CASINHAS (_ponto2, f24/f32): a grade com o
+/* PEÇA — O TECLADO NUMA FILA DE CASINHAS (_ponto2, f27/f35): a grade com o
    número exato de letras, aberta pelo teclado do aparelho ou pelo de verdade. */
 function gradeEscrever(box, id, pi, k, w, rot, aceita){
   registra(id, pi, aceita ? aceita[0] : w);
@@ -1444,7 +1530,7 @@ function gradeEscrever(box, id, pi, k, w, rot, aceita){
   return E;
 }
 
-/* PEÇA — A CRUZADINHA QUE SE MONTA SOZINHA (_ort5b, f21): a primeira palavra
+/* PEÇA — A CRUZADINHA QUE SE MONTA SOZINHA (_ort5b, f24): a primeira palavra
    deita e as outras se penduram nela pela letra em comum. A pista aqui é TEXTO
    (o contrário de…), não figura. */
 function cruzadinha(d, pi, DADOSC, prefFala){
@@ -1551,7 +1637,7 @@ function cruzadinha(d, pi, DADOSC, prefFala){
   d.appendChild(pistas);
 }
 
-/* PEÇA — O CAÇA-PALAVRAS (_ponto2, f27). CONTRATO: `cp-<id>-a` e `cp-<id>-z`. */
+/* PEÇA — O CAÇA-PALAVRAS (_ponto2, f30). CONTRATO: `cp-<id>-a` e `cp-<id>-z`. */
 function cacaPalavras(d, pi, C, rotulo){
   var cels = {};
   var g = el("div", "cpgrade");
@@ -1595,7 +1681,7 @@ function cacaPalavras(d, pi, C, rotulo){
   d.appendChild(lista);
 }
 
-/* PEÇA — PEGAR E SOLTAR NUM ALVO COMPARTILHADO (_ponto2, f1): a peça é o item,
+/* PEÇA — PEGAR E SOLTAR NUM ALVO COMPARTILHADO (_ponto2, f4): a peça é o item,
    o alvo se declara no nível da página como `alvo-<chave>`, e a resposta do item
    é ">chave". As duas portas: puxar OU tocar-tocar. */
 function pegaSolta(d, pi, alvosHTML, itens, chaveAlvo, falaItem, cls){
@@ -1680,20 +1766,20 @@ function montaPerg(d, pi, DP, comFig){
     fechaItem(d, box, id);
   });
 }
-function f1(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Toda história tem gente ou bichos dentro dela. Olhe a figura e diga se ele está nessa história.", "p" + pi + "enun"); montaPerg(d, pi, QUEM, true); }
-function f4(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Toda história acontece em algum <b>lugar</b>. Onde acontece cada uma?", "p" + pi + "enun"); montaPerg(d, pi, ONDE, false); }
-function f9(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Duas coisas aconteceram. Toque na que veio <b>primeiro</b>.", "p" + pi + "enun"); montaPerg(d, pi, ANTES, false); }
-function f10(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "⭐ Toda história tem um <b>problema</b>: uma coisa que dá errado. Qual era o de cada uma?", "p" + pi + "enun"); montaPerg(d, pi, PROB1, false); }
-function f11(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "O problema é de alguém, e aparece num momento da história. Pense bem antes de tocar.", "p" + pi + "enun"); montaPerg(d, pi, PROB2, false); }
-function f13(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Depois do problema vem a <b>solução</b>: como aquilo se resolveu. Toque nela.", "p" + pi + "enun"); montaPerg(d, pi, RESOL1, false); }
-function f14(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "E se tivesse sido diferente? Pense no que <b>quase</b> aconteceu.", "p" + pi + "enun"); montaPerg(d, pi, RESOL2, false); }
-function f16(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "As histórias dizem <b>como</b> cada personagem é, com poucas palavras. Qual combina?", "p" + pi + "enun"); montaPerg(d, pi, COMOE, false); }
-function f19(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Os personagens <b>sentem</b> coisas. Pense em como você se sentiria no lugar dele.", "p" + pi + "enun"); montaPerg(d, pi, SENTE, false); }
-function f22(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Toda história acontece num <b>tempo</b>. Leia a frase: ela já aconteceu, acontece agora, ou vai acontecer?", "p" + pi + "enun"); montaPerg(d, pi, TEMPO, false); }
-function f30(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "No fim de uma fábula fica uma <b>lição</b>. Qual é a de cada uma?", "p" + pi + "enun"); montaPerg(d, pi, MORAL, false); }
+function f4(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Toda história tem gente ou bichos dentro dela. Olhe a figura e diga se ele está nessa história.", "p" + pi + "enun"); montaPerg(d, pi, QUEM, true); }
+function f7(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Toda história acontece em algum <b>lugar</b>. Onde acontece cada uma?", "p" + pi + "enun"); montaPerg(d, pi, ONDE, false); }
+function f12(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Duas coisas aconteceram. Toque na que veio <b>primeiro</b>.", "p" + pi + "enun"); montaPerg(d, pi, ANTES, false); }
+function f13(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "⭐ Toda história tem um <b>problema</b>: uma coisa que dá errado. Qual era o de cada uma?", "p" + pi + "enun"); montaPerg(d, pi, PROB1, false); }
+function f14(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "O problema é de alguém, e aparece num momento da história. Pense bem antes de tocar.", "p" + pi + "enun"); montaPerg(d, pi, PROB2, false); }
+function f16(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Depois do problema vem a <b>solução</b>: como aquilo se resolveu. Toque nela.", "p" + pi + "enun"); montaPerg(d, pi, RESOL1, false); }
+function f17(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "E se tivesse sido diferente? Pense no que <b>quase</b> aconteceu.", "p" + pi + "enun"); montaPerg(d, pi, RESOL2, false); }
+function f19(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "As histórias dizem <b>como</b> cada personagem é, com poucas palavras. Qual combina?", "p" + pi + "enun"); montaPerg(d, pi, COMOE, false); }
+function f22(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Os personagens <b>sentem</b> coisas. Pense em como você se sentiria no lugar dele.", "p" + pi + "enun"); montaPerg(d, pi, SENTE, false); }
+function f25(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Toda história acontece num <b>tempo</b>. Leia a frase: ela já aconteceu, acontece agora, ou vai acontecer?", "p" + pi + "enun"); montaPerg(d, pi, TEMPO, false); }
+function f33(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "No fim de uma fábula fica uma <b>lição</b>. Qual é a de cada uma?", "p" + pi + "enun"); montaPerg(d, pi, MORAL, false); }
 
 /* ---------- 33 — QUAL FRASE RECONTA A HISTÓRIA ---------- */
-function f33(d, pi){
+function f36(d, pi){
   faixa(d, pi, NOMES[pi - 1]);
   enunciado(d, pi, "As duas frases contam a mesma história, mas só uma conta <b>certo</b>. Qual?", "p" + pi + "enun");
   ST.folha["p" + pi].forEach(function(k, i){
@@ -1721,8 +1807,8 @@ function montaMarq(d, pi, DM){
     fechaItem(d, box, id);
   });
 }
-function f2(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Marque <b>todos</b> os que estão na história e toque em Conferir. Cuidado com os que não estão.", "p" + pi + "enun"); montaMarq(d, pi, MARQ); }
-function f23(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Leia o título de cada grupo e marque só as frases que cabem nele.", "p" + pi + "enun"); montaMarq(d, pi, MARQ2); }
+function f5(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Marque <b>todos</b> os que estão na história e toque em Conferir. Cuidado com os que não estão.", "p" + pi + "enun"); montaMarq(d, pi, MARQ); }
+function f26(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Leia o título de cada grupo e marque só as frases que cabem nele.", "p" + pi + "enun"); montaMarq(d, pi, MARQ2); }
 
 /* ---------- 3, 20 e 21 — LIGAR ---------- */
 function montaLigFig(d, pi, DL){
@@ -1757,9 +1843,9 @@ function montaLigTxt(d, pi, DL){
      do esqueleto novo, já fazia assim. */
   montaLigar(d, pi, "g0", pares, d);
 }
-function f3(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Toque numa figura e depois na história em que ela aparece.", "p" + pi + "enun"); montaLigFig(d, pi, LIGP); }
-function f20(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Ligue o <b>momento</b> da história ao que o personagem sentiu ali.", "p" + pi + "enun"); montaLigTxt(d, pi, LIGS); }
-function f21(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Agora ligue cada história à <b>lição</b> que ela deixa.", "p" + pi + "enun"); montaLigTxt(d, pi, LIGF); }
+function f6(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Toque numa figura e depois na história em que ela aparece.", "p" + pi + "enun"); montaLigFig(d, pi, LIGP); }
+function f23(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Ligue o <b>momento</b> da história ao que o personagem sentiu ali.", "p" + pi + "enun"); montaLigTxt(d, pi, LIGS); }
+function f24(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Agora ligue cada história à <b>lição</b> que ela deixa.", "p" + pi + "enun"); montaLigTxt(d, pi, LIGF); }
 
 /* ---------- 5, 7, 8, 34 e 35 — PUXAR E SOLTAR ---------- */
 function montaSolta(d, pi, DS, chave){
@@ -1770,7 +1856,7 @@ function montaSolta(d, pi, DS, chave){
     baralha(lista.slice(0)).map(function(k){ return {k: k, alvo: k, rot: DS[k].rot || DS[k].v, aria: DS[k].rot || DS[k].v}; }),
     chave, function(I){ return "rot_" + I.k; }, "frase");
 }
-function f5(d, pi){
+function f8(d, pi){
   faixa(d, pi, NOMES[pi - 1]);
   enunciado(d, pi, "<b>Puxe</b> o lugar até a história dele, ou toque num e depois no outro.", "p" + pi + "enun");
   montaSolta(d, pi, SOLTA1, "lug");
@@ -1784,17 +1870,17 @@ function montaOrdem(d, pi, DO, chave){
     baralha(lista.slice(0)).map(function(k){ return {k: k, alvo: k, rot: DO[k].v, aria: DO[k].v}; }),
     chave, function(I){ return "cena_" + I.k; }, "frase");
 }
-function f7(d, pi){
+function f10(d, pi){
   faixa(d, pi, NOMES[pi - 1]);
   enunciado(d, pi, "As cenas da fábula do leão estão embaralhadas. Puxe cada uma para o lugar dela, da primeira à última.", "p" + pi + "enun");
   montaOrdem(d, pi, ORDEM1, "or1");
 }
-function f8(d, pi){
+function f11(d, pi){
   faixa(d, pi, NOMES[pi - 1]);
   enunciado(d, pi, "Agora a corrida da lebre e da tartaruga. Ponha as cenas na ordem certa.", "p" + pi + "enun");
   montaOrdem(d, pi, ORDEM2, "or2");
 }
-function f34(d, pi){
+function f37(d, pi){
   faixa(d, pi, NOMES[pi - 1]);
   enunciado(d, pi, "Agora a história é <b>sua</b>. Cada figura tem um papel: puxe o papel para a figura que você escolher para ele.", "p" + pi + "enun");
   var lista = ST.folha["p" + pi];
@@ -1817,11 +1903,11 @@ function montaGrade(d, pi, DG, rot){
     fechaItem(d, box, id);
   });
 }
-function f6(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Agora <b>escreva</b> o lugar. As casinhas dizem quantas letras tem a palavra.", "p" + pi + "enun"); montaGrade(d, pi, GRD1, "Escreva a palavra"); }
-function f15(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Em cada fábula alguém <b>resolveu</b> o problema. Escreva quem foi.", "p" + pi + "enun"); montaGrade(d, pi, GRD2, "Escreva quem foi"); }
-function f24(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Hoje acontece; ontem <b>aconteceu</b>. Escreva o verbo do jeito de ontem.", "p" + pi + "enun"); montaGrade(d, pi, GRD3, "Escreva o verbo de ontem"); }
-function f31(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Escreva o nome de cada um. Você já sabe todos: eles estiveram no caderno inteiro.", "p" + pi + "enun"); montaGrade(d, pi, GRD4, "Escreva o nome"); }
-function f32(d, pi){
+function f9(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Agora <b>escreva</b> o lugar. As casinhas dizem quantas letras tem a palavra.", "p" + pi + "enun"); montaGrade(d, pi, GRD1, "Escreva a palavra"); }
+function f18(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Em cada fábula alguém <b>resolveu</b> o problema. Escreva quem foi.", "p" + pi + "enun"); montaGrade(d, pi, GRD2, "Escreva quem foi"); }
+function f27(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Hoje acontece; ontem <b>aconteceu</b>. Escreva o verbo do jeito de ontem.", "p" + pi + "enun"); montaGrade(d, pi, GRD3, "Escreva o verbo de ontem"); }
+function f34(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Escreva o nome de cada um. Você já sabe todos: eles estiveram no caderno inteiro.", "p" + pi + "enun"); montaGrade(d, pi, GRD4, "Escreva o nome"); }
+function f35(d, pi){
   faixa(d, pi, NOMES[pi - 1]);
   enunciado(d, pi, "Agora o <b>título</b> é seu. Escreva <b>uma palavra</b> que combine com a história — o teclado não tem espaço.", "p" + pi + "enun");
   ST.folha["p" + pi].forEach(function(k, i){
@@ -1836,23 +1922,23 @@ function f32(d, pi){
 }
 
 /* ---------- 12, 28 e 29 — ACHAR NO TEXTO ---------- */
-function f12(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Leia a fábula e toque em " + TXT.tx1.pede + ". Depois confira.", "p" + pi + "enun"); noTexto(d, pi, TXT.tx1, "certo" + pi + "_t", "dica" + pi + "_t"); }
-function f28(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Nesta, toque em " + TXT.tx2.pede + ". Depois confira.", "p" + pi + "enun"); noTexto(d, pi, TXT.tx2, "certo" + pi + "_t", "dica" + pi + "_t"); }
-function f29(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "E nesta, toque em " + TXT.tx3.pede + ". Depois confira.", "p" + pi + "enun"); noTexto(d, pi, TXT.tx3, "certo" + pi + "_t", "dica" + pi + "_t"); }
+function f15(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Leia a fábula e toque em " + TXT.tx1.pede + ". Depois confira.", "p" + pi + "enun"); noTexto(d, pi, TXT.tx1, "certo" + pi + "_t", "dica" + pi + "_t"); }
+function f31(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Nesta, toque em " + TXT.tx2.pede + ". Depois confira.", "p" + pi + "enun"); noTexto(d, pi, TXT.tx2, "certo" + pi + "_t", "dica" + pi + "_t"); }
+function f32(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "E nesta, toque em " + TXT.tx3.pede + ". Depois confira.", "p" + pi + "enun"); noTexto(d, pi, TXT.tx3, "certo" + pi + "_t", "dica" + pi + "_t"); }
 
 /* ---------- 17 e 18 — AS GAVETAS ---------- */
-function f17(d, pi){ gavetas(d, pi, "gA", "Leia a frase. Ela fala da <b>lebre</b> ou da <b>tartaruga</b>? Leve para a gaveta certa."); }
-function f18(d, pi){ gavetas(d, pi, "gB", "Agora separe: isto é o <b>problema</b> da história, ou é a <b>solução</b> dele?"); }
+function f20(d, pi){ gavetas(d, pi, "gA", "Leia a frase. Ela fala da <b>lebre</b> ou da <b>tartaruga</b>? Leve para a gaveta certa."); }
+function f21(d, pi){ gavetas(d, pi, "gB", "Agora separe: isto é o <b>problema</b> da história, ou é a <b>solução</b> dele?"); }
 
 /* ---------- 25 e 26 — OS CAÇA-PERSONAGENS ---------- */
-function f25(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Ache na grade quem a pista descreve: toque na <b>primeira</b> letra e depois na <b>última</b>.", "p" + pi + "enun"); cacaPalavras(d, pi, CACA, "Quem"); }
-function f26(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Agora as coisas da história. Na grade não há acento: procure SOLUCAO, não solução.", "p" + pi + "enun"); cacaPalavras(d, pi, CACA2, "Ache o que"); }
+function f28(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Ache na grade quem a pista descreve: toque na <b>primeira</b> letra e depois na <b>última</b>.", "p" + pi + "enun"); cacaPalavras(d, pi, CACA, "Quem"); }
+function f29(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Agora as coisas da história. Na grade não há acento: procure SOLUCAO, não solução.", "p" + pi + "enun"); cacaPalavras(d, pi, CACA2, "Ache o que"); }
 
 /* ---------- 27 — A CRUZADINHA ---------- */
-function f27(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Toque numa pista, escute e escreva a palavra.", "p" + pi + "enun"); cruzadinha(d, pi, CRZD, "crz_"); }
+function f30(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Toque numa pista, escute e escreva a palavra.", "p" + pi + "enun"); cruzadinha(d, pi, CRZD, "crz_"); }
 
 /* ---------- 35 — O CARTAZ ⭐⭐ OS NOMES VÊM POR ÚLTIMO ---------- */
-function f35(d, pi){
+function f38(d, pi){
   faixa(d, pi, NOMES[pi - 1]);
   enunciado(d, pi, "Você já fez tudo isto sem os nomes. Agora eles: leve cada exemplo para a linha dele.", "p" + pi + "enun");
   var cart = el("div", "cartaz"), linhas = {}, listaC = [];
