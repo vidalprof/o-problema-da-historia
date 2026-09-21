@@ -38,8 +38,8 @@ function aoAbrir(d, fn){ if(!d._aoAbrir) d._aoAbrir = []; d._aoAbrir.push(fn); }
    Regra da casa: tudo o que a criança PRECISA LER tem que poder ser OUVIDO.
    O desenho do botão é CSS puro: nada de emoji (vira quadradinho nos PCs da
    escola). */
-function botaoSom(rot, aoTocar){
-  var b = el("button", "som");
+function botaoSom(rot, aoTocar, cls){
+  var b = el("button", cls || "som");
   b.innerHTML = '<i class="cone"></i><i class="onda o1"></i><i class="onda o2"></i>';
   b.setAttribute("aria-label", rot || "Ouvir");
   b.onclick = function(ev){ ev.stopPropagation(); sPasso(); aoTocar(); };
@@ -94,7 +94,25 @@ function opcoes(pai, pi, id, lista, certa, cls, falaCerto, falaDica, aoAcertar, 
     b.setAttribute("aria-label", o.aria || o.v);
     b.onclick = function(){ if(b._arrastou){ b._arrastou = false; return; } responde(o, b); };
     if(soltarEm) puxavel(b, soltarEm, function(){ responde(o, b); });
-    box.appendChild(b);
+    /* ⚠️ O ALTO-FALANTE DA RESPOSTA, e ele é DISCRETO e vem ANTES da escolha.
+       Pergunta do Marcos (20/set/2026): *"a atividade tem áudio para ajudar os
+       que não sabem ler? O alto-falante discreto para clicar caso o estudante
+       queira ouvir"*. A resposta era NÃO: a opção tinha `fala`, mas o motor só
+       a tocava DEPOIS do clique — ou seja, a criança tinha de ESCOLHER para
+       ouvir, e aí já tinha respondido. O portão `1o` media a metade errada
+       (cobrava o campo `fala` existir, não a criança poder ouvir antes).
+       ⚠️ Botão IRMÃO, nunca dentro do outro: botão dentro de botão é HTML
+       inválido e o clique vaza para a resposta. O `botaoSom` já faz
+       `stopPropagation`. */
+    if(o.fala){
+      var w = el("div", "opw" + (cls && cls.indexOf("frase") > -1 ? " larga" : ""));
+      w.appendChild(b);
+      w.appendChild(botaoSom("Ouvir esta resposta",
+        (function(f){ return function(){ falar(f); }; })(o.fala), "som somop"));
+      box.appendChild(w);
+    } else {
+      box.appendChild(b);
+    }
   });
   pai.appendChild(box);
 }
@@ -883,11 +901,11 @@ var OBJETIVOS = [
    ok: "põe as cenas da história na ordem e diz o que veio antes"},
   {n: "Reconhecer o problema que a história precisa resolver", f: [10, 11, 12],
    ok: "reconhece o conflito que move a narrativa"},
-  {n: "Reconhecer como o problema se resolve", f: [13, 14, 15],
+  {n: "Reconhecer como o problema se resolve, e separá-lo do problema", f: [13, 14, 15, 18],
    ok: "reconhece a resolução e imagina o que aconteceria sem ela"},
-  {n: "Reconhecer as palavras que dizem como o personagem é", f: [16, 17, 18],
+  {n: "Reconhecer as palavras que dizem como o personagem é", f: [16, 17],
    ok: "usa as palavras do texto que caracterizam cada personagem"},
-  {n: "Reconhecer o que o personagem sente em cada momento", f: [19, 20, 21],
+  {n: "Reconhecer o que o personagem sente em cada momento", f: [19, 20],
    ok: "relaciona o momento da história ao sentimento do personagem"},
   {n: "Reconhecer o tempo da narrativa", f: [22, 23, 24],
    ok: "separa o que já aconteceu, o que acontece e o que vai acontecer"},
@@ -895,7 +913,7 @@ var OBJETIVOS = [
    ok: "acha os personagens e as coisas da história na grade e na cruzadinha"},
   {n: "Achar o problema e a solução dentro do texto", f: [28, 29],
    ok: "acha no texto escrito as palavras que dizem o problema e a solução"},
-  {n: "Dizer a lição que a fábula deixa", f: [30],
+  {n: "Dizer a lição que a fábula deixa", f: [21, 30],
    ok: "diz em uma frase a lição de cada fábula"},
   {n: "Nomear, recontar e dar título à história", f: [31, 32, 33],
    ok: "escreve os nomes, dá um título e escolhe o reconto correto"},
@@ -1641,8 +1659,14 @@ function montaLigFig(d, pi, DL){
             fe: "fig_" + k, fd: "lg_" + k + "_d",
             fc: "certo" + pi + "_" + k, dica: "dica" + pi + "_" + k};
   });
-  var cx = el("div", "ligcx"); d.appendChild(cx);
-  montaLigar(cx, pi, "g0", pares, d);
+  /* ⚠️ SEM EMBRULHO: o `montaLigar` recebe a PÁGINA direto. Antes havia um
+     um <div> de embrulho com classe própria no meio, que nunca teve uma linha
+     de CSS — um <div>
+     de nada. O `_qa/classes.py`, depois que passou a ler o `folhas.js`
+     (20/set/2026), acusou `.ligcx` em cinco cadernos; a resposta certa não era
+     inventar uma regra para ele, era tirar o embrulho. O `_corpo5`, que nasceu
+     do esqueleto novo, já fazia assim. */
+  montaLigar(d, pi, "g0", pares, d);
 }
 function montaLigTxt(d, pi, DL){
   var pares = ST.folha["p" + pi][0].map(function(k){
@@ -1651,8 +1675,14 @@ function montaLigTxt(d, pi, DL){
             fe: "lg_" + k + "_e", fd: "lg_" + k + "_d",
             fc: "certo" + pi + "_" + k, dica: "dica" + pi + "_" + k};
   });
-  var cx = el("div", "ligcx"); d.appendChild(cx);
-  montaLigar(cx, pi, "g0", pares, d);
+  /* ⚠️ SEM EMBRULHO: o `montaLigar` recebe a PÁGINA direto. Antes havia um
+     um <div> de embrulho com classe própria no meio, que nunca teve uma linha
+     de CSS — um <div>
+     de nada. O `_qa/classes.py`, depois que passou a ler o `folhas.js`
+     (20/set/2026), acusou `.ligcx` em cinco cadernos; a resposta certa não era
+     inventar uma regra para ele, era tirar o embrulho. O `_corpo5`, que nasceu
+     do esqueleto novo, já fazia assim. */
+  montaLigar(d, pi, "g0", pares, d);
 }
 function f3(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Toque numa figura e depois na história em que ela aparece.", "p" + pi + "enun"); montaLigFig(d, pi, LIGP); }
 function f20(d, pi){ faixa(d, pi, NOMES[pi - 1]); enunciado(d, pi, "Ligue o <b>momento</b> da história ao que o personagem sentiu ali.", "p" + pi + "enun"); montaLigTxt(d, pi, LIGS); }

@@ -129,6 +129,27 @@ button{font-family:inherit;cursor:pointer}
 
 /* fileira genérica de opções */
 .ops{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:10px}
+/* ⚠️ O ALTO-FALANTE DA RESPOSTA — DISCRETO, e é regra do Marcos (20/set/2026):
+   *"o alto-falante discreto para clicar caso o estudante queira ouvir"*. Ele
+   vem AO LADO de cada opção, antes da escolha, para quem ainda não lê.
+   ⚠️ 42 px e não menos: o portão de leiaute reprova alvo abaixo de 40 px, e
+   dedo de criança não acerta menor que isso. "Discreto" aqui é a BORDA clara e
+   a opacidade, não o tamanho. */
+/* ⚠️ `wrap` e `max-width` NÃO são enfeite: sem eles a opção + o alto-falante
+   passavam 20 px da tela do celular no `_reinos` (folha 25), e o portão de
+   leiaute pegou — alvo cortado na beira é alvo que a criança não alcança.
+   Com `wrap`, quando não cabe lado a lado o alto-falante desce para baixo
+   da resposta em vez de empurrá-la para fora. */
+.opw{display:flex;flex-wrap:wrap;align-items:center;gap:6px;max-width:100%}
+.opw.larga{width:100%;max-width:440px}
+.opw.larga .op.frase{flex:1;width:auto;max-width:none}
+.som.somop{width:42px;height:42px;min-width:42px;border-width:2px;
+  border-color:#e3d6ce;opacity:.85}
+.som.somop:active{opacity:1}
+.som.somop .cone{left:11px;top:15px}
+.som.somop .o1{left:24px;top:14px}
+.som.somop .o2{left:27px;top:9px}
+
 .op{min-width:64px;min-height:56px;border:3px solid #e6dbd1;border-radius:16px;background:#fff;color:var(--texto);
   font-weight:900;font-size:20px;padding:8px 14px;-webkit-transition:transform .1s;transition:transform .1s}
 .op:active{transform:scale(.94)}
@@ -2733,11 +2754,12 @@ var CURRICULO = {
    "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
   },
   {
-   "objetivo": "Reconhecer como o problema se resolve",
+   "objetivo": "Reconhecer como o problema se resolve, e separá-lo do problema",
    "folhas": [
     13,
     14,
-    15
+    15,
+    18
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
@@ -2747,8 +2769,7 @@ var CURRICULO = {
    "objetivo": "Reconhecer as palavras que dizem como o personagem é",
    "folhas": [
     16,
-    17,
-    18
+    17
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
@@ -2758,8 +2779,7 @@ var CURRICULO = {
    "objetivo": "Reconhecer o que o personagem sente em cada momento",
    "folhas": [
     19,
-    20,
-    21
+    20
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
@@ -2800,6 +2820,7 @@ var CURRICULO = {
   {
    "objetivo": "Dizer a lição que a fábula deixa",
    "folhas": [
+    21,
     30
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
@@ -3059,5 +3080,5 @@ function novaFolha(){
   </div>
 </div>
 <!--</dossie-html>-->
-<script src="folhas.js?v=ce8c355a8c"></script>
+<script src="folhas.js?v=fd6391f915"></script>
 </body></html>

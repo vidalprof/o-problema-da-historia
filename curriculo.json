@@ -70,11 +70,12 @@
    "habilidade": "HABILIDADE: \"Reconhecer o conflito gerador de uma narrativa ficcional e sua resolução, além de palavras, expressões e frases que caracterizam personagens e ambientes.\""
   },
   {
-   "objetivo": "Reconhecer como o problema se resolve",
+   "objetivo": "Reconhecer como o problema se resolve, e separá-lo do problema",
    "folhas": [
     13,
     14,
-    15
+    15,
+    18
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
@@ -84,8 +85,7 @@
    "objetivo": "Reconhecer as palavras que dizem como o personagem é",
    "folhas": [
     16,
-    17,
-    18
+    17
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
@@ -95,8 +95,7 @@
    "objetivo": "Reconhecer o que o personagem sente em cada momento",
    "folhas": [
     19,
-    20,
-    21
+    20
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
    "objeto": "Formação do leitor literário",
@@ -137,6 +136,7 @@
   {
    "objetivo": "Dizer a lição que a fábula deixa",
    "folhas": [
+    21,
     30
    ],
    "pratica": "Leitura/escuta (compartilhada e autônoma)",
